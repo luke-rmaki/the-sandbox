@@ -1,11 +1,21 @@
 <style>
-  :root {
-    --black: black;
-    --white: white;
+  @font-face {
+    font-family: "Xenon";
+    src: url("/MonaspaceXenon-WideRegular.woff");
+  }
+  body {
+    --gray: #373042;
+    --blue: #36feff;
+    --orange: #ffb761;
+    font-family: "Xenon" !important;
+    background: var(--gray) !important;
   }
 
-  body {
-    background: var(--black);
-    color: var(--white);
+  h1 {
+    color: var(--blue);
+  }
+
+  a {
+    color: var(--orange);
   }
 </style>

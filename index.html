@@ -2,13 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Cool Treats</title>
-    <link rel="icon" href="https://fav.farm/😎" />
+    <title>The Sandbox</title>
+    <link rel="icon" href="https://fav.farm/🚀" />
     <style>
+      @font-face {
+        font-family: "Xenon";
+        src: url("/MonaspaceXenon-WideRegular.woff");
+      }
       body {
-        --blue: #000;
-        --yellow: #fabf47;
-        font-family: "MD IO Variable" !important;
+        --gray: #373042;
+        --orange: #ffb761;
+        font-family: "Xenon" !important;
+        background: var(--gray) !important;
+      }
+      a[data-filename] {
+        font-size: 1rem;
+        color: var(--orange);
       }
       h1,
       h2,
