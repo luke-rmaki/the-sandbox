@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sandbox Project</title>
+    {%BASE_CSS%}
+    <style>
+      body {
+        margin: 0;
+        background-color: #373042;
+        height: 100vh;
+      }
+      nav {
+        --width: 300px;
+        margin: 100px auto;
+        width: var(--width);
+        height: var(--width);
+
+        border-radius: 50%;
+        position: relative;
+      }
+      button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      nav a {
+        --deg: calc(360deg / 5);
+        --angle: calc(var(--index) * var(--deg));
+        --point-size: 1ch;
+        opacity: 0;
+        --radius: calc((var(--width) / 2) - (var(--point-size) / 2));
+
+        --x: calc(var(--radius) * cos(var(--angle)));
+        --y: calc(var(--radius) * sin(var(--angle)));
+        top: 50%;
+        left: 50%;
+
+        position: absolute;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        transition: 0.5s ease-in top, 0.5s ease-in left;
+      }
+
+      nav.show a {
+        animation: show 0.5s ease-in 1 forwards;
+      }
+      nav.hide a {
+        animation: hide 0.5s ease-in 1 forwards;
+      }
+
+      @keyframes show {
+        0% {
+          opacity: 0;
+          left: 50%;
+          top: 50%;
+        }
+        100% {
+          opacity: 1;
+          left: calc(var(--radius) + var(--x));
+          top: calc(var(--radius) + var(--y));
+        }
+      }
+      @keyframes hide {
+        0% {
+          opacity: 1;
+          left: calc(var(--radius) + var(--x));
+          top: calc(var(--radius) + var(--y));
+        }
+        100% {
+          opacity: 0;
+          left: 50%;
+          top: 50%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {%HEADER%}
+
+    <h1>Circular Nav</h1>
+
+    <nav>
+      <a style="--index: 1" href="#">Home</a>
+      <a style="--index: 2" href="#">About</a>
+      <a style="--index: 3" href="#">Projects</a>
+      <a style="--index: 4" href="#">Contact</a>
+      <a style="--index: 5" href="#">Another</a>
+      <button type="button">Menu</button>
+    </nav>
+
+    <script>
+      const button = document.querySelector("button");
+      button.addEventListener("click", () => {
+        const nav = document.querySelector("nav");
+        if (nav.classList.contains("show")) {
+          nav.classList.remove("show");
+          nav.classList.add("hide");
+        } else {
+          nav.classList.remove("hide");
+          nav.classList.add("show");
+        }
+      });
+    </script>
+  </body>
+</html>
